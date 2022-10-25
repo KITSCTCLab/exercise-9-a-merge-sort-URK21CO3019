@@ -1,36 +1,38 @@
 from typing import List
 
+def merge(arr: [int], l: int, mid: int, r: int) -> [int]:
+  l1 = arr[l:mid]
+  l2 = arr[mid:r]
+  i = 0
+  j = 0
+  k = l
+  while i < len(l1) and j < len(l2):
+    if l1[i] < l2[j]:
+      arr[k] = l1[i]
+      i += 1
+    else:
+      arr[k] = l2[j]
+      j += 1
+    k += 1
+  while i < len(l1):
+    arr[k] = l1[i]
+    i += 1
+    k += 1
+  while j < len(l2):
+    arr[k] - l2[j]
+    j += 1
+    k += 1
+
+def merge_sort_ftn(arr, l, r) -> None:
+  if r - l >= 2:
+    mid = l + (r - l) // 2
+    merge_sort_ftn(arr, l, mid)
+    merge_sort_ftn(arr, mid, r)
+    merge(arr, l, mid, r)
+  
 def merge_sort(data) -> None:
-  # Write code here
-  if len(data) >1:
-    mid = (len(data))//2
-    data_left = data[:mid]
-    data_right = data[mid:]
-    merge_sort(data_left)
-    merge_sort(data_right)
- 
-    a = 0 # for left_ata
-    b = 0 # for right_data
-    c = 0 # for main_data
+  merge_sort_ftn(data, 0, len(data))
 
-    while a<len(data_left) and b<len(data_right):
-      if data_left[a] <= data_right[b]:
-        data[c] = data_left[a]
-        a+=1
-      else:
-        data[c] = data_right[b]
-        b+=1
-      c+=1
-
-    while a < len(data_left):
-      data[c] = data_left[a]
-      a+=1
-      c+=1
-    while b < len(data_right):
-      data[c] = data_right[b]
-      b+=1
-      c+=1
-    return data
 
 # Do not change the following code
 input_data = input()
